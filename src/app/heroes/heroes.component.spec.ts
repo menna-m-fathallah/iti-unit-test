@@ -42,12 +42,14 @@ describe('HeroesComponent', () => {
             // arrange
             mockService.deleteHero.and.returnValue(of(true));
             component.heroes = HEROES;
+            component.showAlert = jasmine.createSpy()
 
             // act
             component.delete(HEROES[2]);
 
             // assert
             expect(component.heroes.length).toBe(2);
+            expect(component.showAlert).toHaveBeenCalled();
         });
 
         it('should call deleteHere method', () => {

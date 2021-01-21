@@ -4,12 +4,17 @@ describe('StrengthPipe', () => {
     it('should return weak if strength is 5', () => {
         const pipe = new StrengthPipe();
 
-        expect(pipe.transform(5)).toEqual('5 (weak)');
+        const result = pipe.transform(5)
+
+        expect(result).toEqual('5 (weak)');
     });
 
     it('should display strong when strength is 10', () => {
         const pipe = new StrengthPipe();
+        
+        const result = pipe.transform(10)
 
-        expect(pipe.transform(10)).toEqual('10 (strong)');
+        expect(result).toEqual('10 (strong)');
     });
+
 });
