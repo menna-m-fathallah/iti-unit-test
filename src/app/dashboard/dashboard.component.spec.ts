@@ -1,10 +1,24 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { of } from "rxjs";
 import { DashboardComponent } from "./dashboard.component";
 
-describe("DashboardComponent", () => {
+fdescribe("DashboardComponent", () => {
+  let service, component
+  beforeEach(() => {
+    service = jasmine.createSpyObj('service', ['getHeroes'])
+    component = new DashboardComponent(service);
+  })
 
-  describe("method2", () => {
-
-  });
+  it('getcomponentHeroes method', () => {
+    //1
+    service.getHeroes.and.returnValue(of([{
+      id: 5,
+      name: "string",
+      strength: 5
+    }]))
+    //2
+    component.getcomponentHeroes()
+    //3
+    expect(service.getHeroes).toHaveBeenCalled();
+    expect(component.heroes.length).toBe(1)
+  })
 })
